@@ -40,6 +40,6 @@ if __name__ == '__main__':
 	if i_files > 10:
 		for i in range(10):
 			t_color_tuple = get_colors(files[i])
-			#print "red: %i, green: %i, blue: %i" % (t_color_tuple[0], t_color_tuple[1], t_color_tuple[2])
+			print "red: %i, green: %i, blue: %i" % (t_color_tuple[0], t_color_tuple[1], t_color_tuple[2])
 
     #get_colors('seed/sudan.jpg', 'outfile.png', numcolors = 1)
