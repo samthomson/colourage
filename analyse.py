@@ -44,8 +44,8 @@ if __name__ == '__main__':
 	r.db("colourage")
 
 
-	if i_files > 10:
-		for i in range(10):
+	for i in range(i_files):
+		if(files[i].endswith(('.jpg', '.JPG', '.jpeg', '.JPEG'))):
 			t_color_tuple = get_colors(files[i])
-			#print "file: %s; red: %i, green: %i, blue: %i" % (files[i], t_color_tuple[0], t_color_tuple[1], t_color_tuple[2])
+			print "file %i: %s; red: %i, green: %i, blue: %i" % (i, files[i], t_color_tuple[0], t_color_tuple[1], t_color_tuple[2])
 			r.db("colourage").table("seed_colours").insert([{"file": files[i], "red": t_color_tuple[0], "green": t_color_tuple[1], "blue": t_color_tuple[2]}]).run()
