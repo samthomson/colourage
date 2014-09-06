@@ -99,6 +99,4 @@ if __name__ == '__main__':
 				print s_get_path(conn, miColourHolder[x,y,0], miColourHolder[x,y,1], miColourHolder[x,y,2])
 
 
-
-
 		# resize target image to 1/step size of seed and make square
