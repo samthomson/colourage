@@ -3,7 +3,7 @@ import os
 import sys
 from os import listdir
 from os.path import isfile, join
-import rethinkdb as r
+import sqlite3
  
 def get_colors(infile, outfile = '', numcolors=1, swatchsize=20, resize=150):
  
@@ -30,22 +30,21 @@ if __name__ == '__main__':
 
 	files = get_files('seed')
 
-
-
 	i_files = len(files)
 
 
 	print "%i files" % i_files
 
-
 	# store in db
-	r.connect( "localhost").repl()
+	db = sqlite3.connect('database')
+	cursor = db.cursor()
 
-	r.db("colourage")
 
-
-	for i in range(i_files):
+	#for i in range(i_files):
+	for i in range(20):
 		if(files[i].endswith(('.jpg', '.JPG', '.jpeg', '.JPEG'))):
 			t_color_tuple = get_colors(files[i])
 			print "file %i: %s; red: %i, green: %i, blue: %i" % (i, files[i], t_color_tuple[0], t_color_tuple[1], t_color_tuple[2])
-			r.db("colourage").table("seed_colours").insert([{"file": files[i], "red": t_color_tuple[0], "green": t_color_tuple[1], "blue": t_color_tuple[2]}]).run()
+			cursor.execute('''INSERT OR IGNORE INTO files(file, red, green, blue) VALUES(?,?,?,?)''', (files[i], t_color_tuple[0], t_color_tuple[1], t_color_tuple[2]))
+
+	db.commit()

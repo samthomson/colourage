@@ -5,7 +5,7 @@ import math
 
 from os import listdir
 from os.path import isfile, join
-import rethinkdb as r
+import sqlite3
 
 def s_get_path(conn, i_r, i_g, i_b):
 
@@ -36,9 +36,10 @@ if __name__ == '__main__':
 	t_size_of_seed = im_seed.size
 	i_shortest_side = min(t_size_of_seed)
 
-	conn = r.connect(host = 'localhost', db = 'colourage')
 
-	r.db("colourage")
+	db = sqlite3.connect('database')
+	cursor = db.cursor()
+	
 
 	# create renderings
 	for cColage in range(len(ia_step_sizes)):

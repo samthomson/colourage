@@ -1,34 +1,23 @@
-import rethinkdb as r
+import sqlite3
 
 
 
 if __name__ == '__main__':
 
-	conn = r.connect(host = 'localhost', db = 'colourage')
 
-	r.db("colourage")
+	#db = sqlite3.connect(':memory:')
+	#create/open db connection
+	db = sqlite3.connect('database')
 
-	i_r = 152
-	i_g = 64
-	i_b = 89
+	cursor = db.cursor()
+	cursor.execute('''
+		CREATE TABLE files(id INTEGER, file TINYTEXT PRIMARY KEY,
+	                   red UNSIGNED TINTYINT(1),
+	                   green UNSIGNED TINTYINT(1),
+	                   blue UNSIGNED TINTYINT(1))
+	''')
+	db.commit()
 
-	i_offset = 20
 
+	db.close()
 
-
-	result = r.table('seed_colours').filter(
-		(r.row["red"] >= i_r-i_offset) & (r.row["red"] <= i_r+i_offset) &
-		(r.row["green"] >= i_g-i_offset) & (r.row["green"] <= i_g+i_offset) &
-		(r.row["blue"] >= i_b-i_offset) & (r.row["blue"] <= i_b+i_offset)
-		).limit(1).run(conn)
-	for image in result:
-		print image["file"]
-	"""
-	for c in r.table('seed_colours').filter(
-		(r.row["red"] >= i_r-10) & (r.row["red"] <= i_r+10) &
-		(r.row["green"] >= i_g-10) & (r.row["green"] <= i_g+10) &
-		(r.row["blue"] >= i_b-10) & (r.row["blue"] <= i_b+10)
-		).limit(1).run(conn):
-		print c
-
-	"""
