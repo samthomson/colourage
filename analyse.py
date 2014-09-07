@@ -41,10 +41,10 @@ if __name__ == '__main__':
 
 
 	#for i in range(i_files):
-	for i in range(20):
+	for i in range(i_files):
 		if(files[i].endswith(('.jpg', '.JPG', '.jpeg', '.JPEG'))):
 			t_color_tuple = get_colors(files[i])
-			print "file %i: %s; red: %i, green: %i, blue: %i" % (i, files[i], t_color_tuple[0], t_color_tuple[1], t_color_tuple[2])
+			#print "file %i: %s; red: %i, green: %i, blue: %i" % (i, files[i], t_color_tuple[0], t_color_tuple[1], t_color_tuple[2])
 			cursor.execute('''INSERT OR IGNORE INTO files(file, red, green, blue) VALUES(?,?,?,?)''', (files[i], t_color_tuple[0], t_color_tuple[1], t_color_tuple[2]))
 
 	db.commit()
