@@ -19,9 +19,9 @@ def s_get_path(cursor, i_r, i_g, i_b):
 if __name__ == '__main__':
 
 	# seed image, which will be analysed and a colage made from
-	s_seed_image = "seed.JPG"
+	s_seed_image = "sam.JPG"
 	ia_step_sizes = [16, 32, 64, 128, 256]
-	ia_step_sizes = [128,256]
+	ia_step_sizes = [256]
 
 
 	im_seed = Image.open(s_seed_image)
@@ -100,24 +100,42 @@ if __name__ == '__main__':
 
 		#print "will now make blocks from looked up images, with dimensions: %i in grid of (%i,%i)" % (i_block_size, ia_xy_steps[0], ia_xy_steps[1])
 
+
 		# go through each block and find a matching picture
-		for x in xrange(0, ia_xy_steps[0]):
-			for y in xrange(0, ia_xy_steps[1]):
+		for x in range(ia_xy_steps[0]):
+			for y in range(ia_xy_steps[1]):
+				"""
 				# search for a picture in db which is closest to this colour range
 				s_best_matching_image_path = s_get_path(cursor, miColourHolder[x,y,0], miColourHolder[x,y,1], miColourHolder[x,y,2])
-				
+
+				# load image into ram
 				im_temp = Image.open(s_best_matching_image_path)
+				# find shortest side, to resize to square
 				i_shortest_side_of_temp = min(im_temp.size)
 				im_temp = im_temp.crop((0,0,i_shortest_side_of_temp,i_shortest_side_of_temp))
+				#im_temp = im_temp.crop((0,0,i_block_size, i_block_size))
 
 				im_temp.thumbnail((i_block_size, i_block_size))
 
 				im_new_colage.paste(im_temp, (x * i_block_size, y * i_block_size))
-				#print "pasting %i,%i" % (x,y)
-			print "completed line %i of %i" % (x,y)
+				"""
+
+
+				s_best_matching_image_path = "thumb/" + s_get_path(cursor, miColourHolder[x,y,0], miColourHolder[x,y,1], miColourHolder[x,y,2]).replace("/", "-")
+
+				# load image into ram
+				im_temp = Image.open(s_best_matching_image_path)
+				im_temp.thumbnail((i_block_size, i_block_size))
+				
+				im_new_colage.paste(im_temp, (x * i_block_size, y * i_block_size))
+
+
+
+			print "line %i of %i" % (x,ia_xy_steps[0])
+				
 
 		
-		im_new_colage.save("out/collage"+str(ia_step_sizes[cColage])+".jpg")
+		im_new_colage.save("out/"+str(ia_step_sizes[cColage])+s_seed_image)
 
 
 	# after images have been made
