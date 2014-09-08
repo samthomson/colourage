@@ -23,7 +23,7 @@ How to use
 
 (only do steps 3 and 4 once, not each time you make a colage)
 
-*Options:*
+**Options:**
 
 in generate.py, edit the variables 's_seed_image' and 'ia_step_sizes' to change the source image, and output resolution of the colage.
 
