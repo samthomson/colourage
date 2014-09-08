@@ -5,6 +5,8 @@ python image analyser gets colours then builds collage by doing an image search 
 
 written in python, uses sqlite to store an index of seed pictures, which it then generates a collage from, based on a supplied collage seed.
 
+See sample pics below.
+
 
 How to use
 
@@ -32,6 +34,9 @@ Then run the analyse.py script. It will loop through all pictures and store the 
 Once the index is complete run generate.py to build a collage from based on the seed image and indexed seed folder pictures.
 
 You can edit the generate.py script to change the supplied seed (the picture you want a collage made for), and also the 'resolution'.
+
+**TO DO**
+- make multi threaded
 
 Turn:
 
