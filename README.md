@@ -9,12 +9,12 @@ Turn:
 
 into:
 
-![collage](out/r_16wave.jpg)
+![collage](docs/r_16wave.jpg)
 
-![collage](out/r_32wave.jpg)
+![collage](docs/r_32wave.jpg)
 
-![collage](out/r_64wave.jpg)
+![collage](docs/r_64wave.jpg)
 
-![collage](out/r_128wave.jpg)
+![collage](docs/r_128wave.jpg)
 
-![collage](out/r_256wave.jpg)
+![collage](docs/r_256wave.jpg)
