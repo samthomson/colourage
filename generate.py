@@ -19,9 +19,8 @@ def s_get_path(cursor, i_r, i_g, i_b):
 if __name__ == '__main__':
 
 	# seed image, which will be analysed and a colage made from
-	s_seed_image = "sam.JPG"
-	ia_step_sizes = [16, 32, 64, 128, 256]
-	ia_step_sizes = [256]
+	s_seed_image = "wave.jpg"
+	ia_step_sizes = [128, 256]
 
 
 	im_seed = Image.open(s_seed_image)
@@ -29,7 +28,7 @@ if __name__ == '__main__':
 	t_size_of_seed = im_seed.size
 	i_shortest_side = min(t_size_of_seed)
 
-	i_analysing_accuracy = 10
+	i_analysing_accuracy = 1
 
 	im_new_colage = Image.new("RGB", t_size_of_seed)
 
@@ -118,8 +117,8 @@ if __name__ == '__main__':
 				im_temp.thumbnail((i_block_size, i_block_size))
 
 				im_new_colage.paste(im_temp, (x * i_block_size, y * i_block_size))
+				
 				"""
-
 
 				s_best_matching_image_path = "thumb/" + s_get_path(cursor, miColourHolder[x,y,0], miColourHolder[x,y,1], miColourHolder[x,y,2]).replace("/", "-")
 
@@ -129,13 +128,15 @@ if __name__ == '__main__':
 				
 				im_new_colage.paste(im_temp, (x * i_block_size, y * i_block_size))
 
+				
+
 
 
 			print "line %i of %i" % (x,ia_xy_steps[0])
 				
 
 		
-		im_new_colage.save("out/"+str(ia_step_sizes[cColage])+s_seed_image)
+		im_new_colage.save("out/r_"+str(ia_step_sizes[cColage])+s_seed_image)
 
 
 	# after images have been made
