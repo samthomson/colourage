@@ -5,6 +5,12 @@ python image analyser gets colours then builds collage by doing an image search 
 
 written in python, uses sqlite to store an index of seed pictures, which it then generates a collage from, based on a supplied collage seed.
 
+
+How to use
+
+==========
+
+
 So basically put all your source seed pictures into 'seed' folder. 
 
 Then run the analyse.py script. It will loop through all pictures and store the average RGB values into an sqlite instance.

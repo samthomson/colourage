@@ -4,8 +4,6 @@ import sqlite3
 
 if __name__ == '__main__':
 
-
-	#db = sqlite3.connect(':memory:')
 	#create/open db connection
 	db = sqlite3.connect('database')
 
