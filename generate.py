@@ -19,7 +19,7 @@ def s_get_path(cursor, i_r, i_g, i_b):
 if __name__ == '__main__':
 
 	# seed image, which will be analysed and a colage made from
-	s_seed_image = "wave.jpg"
+	s_seed_image = "colage_seed.jpg"
 	ia_step_sizes = [128, 256]
 
 
